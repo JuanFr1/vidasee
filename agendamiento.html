@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIDASEE - Agendamiento</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .bg-purple-main { background-color: #6B21A8; }
+        .text-orange-main { color: #F97316; }
+        .bg-green-main { background-color: #65B32E; }
+        
+        .service-card {
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .service-card:hover {
+            transform: scale(1.02);
+            filter: brightness(1.1);
+        }
+
+        /* Footer Styles */
+        .footer-logo {
+            max-width: 180px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .social-icon {
+            width: 32px;
+            height: 32px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .social-icon:hover {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 bg-white">
+
+    <section class="max-w-xl mx-auto px-4 py-8 text-center">
+        
+        <img src="Vidasee.png" alt="VIDASEE" class="mx-auto mb-6 w-32">
+        
+        <h1 class="text-5xl font-extrabold mt-6 leading-tight uppercase">
+            Bienvenido a tu <br>
+            <span class="text-orange-main">Siguiente Paso</span>
+        </h1>
+
+        <p class="text-gray-600 mb-8 mt-4">
+            Reserva tu horario y asegura tu espacio para construir la estructura que tu negocio necesita.
+        </p>
+
+        <div class="space-y-4 mb-10 text-left">
+            <div class="service-card bg-purple-main text-white p-6 rounded-xl shadow-lg">
+                <h3 class="font-bold text-xl mb-1">Diagnóstico Empresarial</h3>
+                <p class="text-sm opacity-90">Detectamos el problema raíz de tu negocio.</p>
+                <span class="text-xs italic opacity-70 block mt-1">(Sesión 90 min enfocada en claridad estructural)</span>
+            </div>
+
+            <div class="service-card bg-purple-main text-white p-6 rounded-xl shadow-lg">
+                <h3 class="font-bold text-xl mb-1">Orden Base</h3>
+                <p class="text-sm opacity-90">Construimos la base para que tu negocio deje de depender de ti.</p>
+                <span class="text-xs italic opacity-70 block mt-1">(Implementación guiada de estructura mínima viable)</span>
+            </div>
+
+            <div class="service-card bg-purple-main text-white p-6 rounded-xl shadow-lg">
+                <h3 class="font-bold text-xl mb-1">Gestión Estratégica</h3>
+                <p class="text-sm opacity-90">Empiezas a tomar decisiones con números, no con intuición.</p>
+                <span class="text-xs italic opacity-70 block mt-1">(Control financiero y procesos documentados)</span>
+            </div>
+
+            <div class="service-card bg-purple-main text-white p-6 rounded-xl shadow-lg">
+                <h3 class="font-bold text-xl mb-1">Dirección y Acompañamiento</h3>
+                <p class="text-sm opacity-90">Dejas de operar el negocio y empiezas a dirigirlo.</p>
+                <span class="text-xs italic opacity-70 block mt-1">(Acompañamiento estratégico continuo)</span>
+            </div>
+        </div>
+
+        <h2 class="text-orange-main text-2xl font-bold mb-8 uppercase">
+            Aquí empieza el orden real de tu negocio.
+        </h2>
+
+        <div class="bg-orange-50 p-6 rounded-xl border border-orange-200 mb-8">
+            <p class="text-orange-main text-2xl font-bold mb-8 uppercase">Selecciona el día y la hora</p>
+            
+            <div class="bg-white border-2 border-dashed border-orange-200 rounded-lg py-16 text-gray-400 text-sm">
+                [Espacio para Widget de Google Calendar]
+            </div>
+        </div>
+
+        <div class="space-y-6">
+            <p class="text-gray-600">
+                <strong>¿Horario seleccionado?</strong><br>
+                Para asegurarlo, debes completar el pago ahora.
+            </p>
+
+            <a href="#" class="bg-green-main text-white px-8 py-4 rounded-xl text-xl font-bold hover:scale-105 transition-transform inline-block uppercase w-full shadow-lg">
+                ¡Asegurar mi espacio ahora!
+            </a>
+
+            <p class="text-gray-600 italic text-sm">
+                🔒 Pago 100% cifrado y seguro
+            </p>
+        </div>
+
+    </section>
+
+    <section id="cta" class="page text-center">
+        <div class="mt-20 flex flex-col items-center">
+            <img src="Vidasee.png" alt="VIDASEE Logo" class="footer-logo">
+
+            <div class="social-links">
+                <a href="https://facebook.com/" target="_blank">
+                    <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" class="social-icon" alt="Facebook">
+                </a>
+                <a href="https://instagram.com/" target="_blank">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" class="social-icon" alt="Instagram">
+                </a>
+                <a href="https://tiktok.com/" target="_blank">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" class="social-icon" alt="TikTok">
+                </a>
+            </div>
+
+            <p class="mt-20 text-gray-300 text-[10px] font-bold uppercase tracking-[0.5em]">AGENCIA VIDASEE • ORDEN ANTES QUE CRECIMIENTO</p>
+        </div>
+    </section>
+    
+</body>
+</html>
