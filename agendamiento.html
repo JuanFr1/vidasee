@@ -6,10 +6,26 @@
     <title>VIDASEE - Agendamiento</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        .bg-purple-main { background-color: #6B21A8; }
-        .text-orange-main { color: #F97316; }
-        .bg-green-main { background-color: #65B32E; }
+        :root {
+            --vidasee-purple: #6B46C1;
+            --vidasee-green: #76bc21;
+            --vidasee-orange: #DD6B20;
+            --vidasee-black: #1A202C;
+            --vidasee-beige: #F7F3E9;
+            --vidasee-white: #FFFFFF;
+        }
         
+        .bg-purple-main { background-color: var(--vidasee-purple); }
+        .text-orange-main { color: var(--vidasee-orange); }
+        .bg-green-main { background-color: var(--vidasee-green); }
+        
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
         .service-card {
             transition: all 0.2s ease;
             cursor: pointer;
@@ -20,28 +36,10 @@
         }
 
         /* Footer Styles */
-        .footer-logo {
-            max-width: 180px;
-            margin: 0 auto 1.5rem;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 1rem;
-        }
-
-        .social-icon {
-            width: 32px;
-            height: 32px;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-        }
-
-        .social-icon:hover {
-            transform: scale(1.1);
-            opacity: 0.8;
-        }
+        .footer-logo { max-width: 180px; margin: 0 auto 1.5rem; }
+        .social-links { display: flex; justify-content: center; gap: 1.5rem; }
+        .social-icon { width: 32px; height: 32px; }
+        .social-icon:hover { transform: scale(1.1); opacity: 0.8; }
     </style>
 </head>
 <body class="font-sans text-gray-800 bg-white overflow-x-hidden">

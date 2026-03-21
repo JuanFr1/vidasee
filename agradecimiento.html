@@ -6,11 +6,27 @@
     <title>¡Cupo Reservado! - VIDASEE</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        .bg-purple-main { background-color: #7022B4; }
-        .text-purple-main { color: #7022B4; }
-        .bg-green-main { background-color: #65B32E; }
-        .bg-cream-light { background-color: #FFF9F0; }
-        .text-orange-main { color: #F97316; }
+        :root {
+            --vidasee-purple: #6B46C1;
+            --vidasee-green: #76bc21;
+            --vidasee-orange: #DD6B20;
+            --vidasee-black: #1A202C;
+            --vidasee-beige: #F7F3E9;
+            --vidasee-white: #FFFFFF;
+        }
+        
+        .bg-purple-main { background-color: var(--vidasee-purple); }
+        .text-purple-main { color: var(--vidasee-purple); }
+        .text-orange-main { color: var(--vidasee-orange); }
+        .bg-green-main { background-color: var(--vidasee-green); }
+        .bg-cream-light { background-color: var(--vidasee-beige); }
+    
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
     </style>
 </head>
 <body class="font-sans text-gray-800 bg-white">
