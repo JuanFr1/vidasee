@@ -322,7 +322,7 @@
             <h2 class="text-4xl md:text-5xl mb-8 leading-tight">Ahora ya sabes dónde estás.<br>
             El problema es que sin estructura, esto no se corrige solo</h2>
             
-            <div class="card bg-[#F7F3E9] mb-12 text-left border border-white">
+            <div class="card bg-white mb-12 text-left border border-white">
                 <h3 class="text-[#6B46C1] text-xl mb-6">Radiografía Estratégica 1:1</h3>
                 <p class="mb-6 text-lg">Agenda una sesión de 90 minutos conmigo para:</p>
                 <ul class="space-y-4 mb-8 text-gray-700">
@@ -410,69 +410,6 @@
                 document.getElementById('result-mid').classList.remove('hidden');
             } else {
                 document.getElementById('result-high').classList.remove('hidden');
-            }
-        }
-
-        async function generateAIAnalysis() {
-            const problem = document.getElementById('business-problem').value;
-            const checks = document.querySelectorAll('.signal-check:checked');
-            const selectedSignals = Array.from(checks).map(c => c.getAttribute('data-label')).join(', ');
-            
-            if (!problem.trim()) {
-                alert("Por favor, describe brevemente tu desafío actual para un mejor análisis.");
-                return;
-            }
-
-            const btn = document.getElementById('ai-btn');
-            const loading = document.getElementById('ai-loading');
-            const responseContainer = document.getElementById('ai-response-container');
-            const responseContent = document.getElementById('ai-response-content');
-
-            btn.disabled = true;
-            loading.classList.remove('hidden');
-            responseContainer.style.display = 'none';
-
-            const systemPrompt = "Actúa como una Directora de Producto Editorial y Consultora de Estructura de Negocios para la firma VIDASEE. Tu filosofía es 'Orden antes que crecimiento'. Analiza el problema del usuario de forma elegante, humana, directa y profesional. No uses lenguaje de gurú ni promesas vacías. Da un consejo accionable que identifique el 'bloqueo raíz'.";
-            const userQuery = `Mi problema es: "${problem}". Las señales de desorden que identifiqué en mi negocio son: ${selectedSignals || "Ninguna marcada aún"}. ¿Cuál es tu análisis profesional para mi caso?`;
-
-            try {
-                const response = await callGeminiAPI(userQuery, systemPrompt);
-                responseContent.innerHTML = response.replace(/\n/g, '<br>');
-                responseContainer.style.display = 'block';
-            } catch (error) {
-                responseContent.innerHTML = "Hubo un error al procesar tu análisis. Por favor, intenta de nuevo o agenda tu diagnóstico directo.";
-                responseContainer.style.display = 'block';
-            } finally {
-                btn.disabled = false;
-                loading.classList.add('hidden');
-            }
-        }
-
-        async function callGeminiAPI(query, systemInstruction, retries = 0) {
-            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
-            const payload = {
-                contents: [{ parts: [{ text: query }] }],
-                systemInstruction: { parts: [{ text: systemInstruction }] }
-            };
-
-            try {
-                const response = await fetch(url, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-
-                if (!response.ok) throw new Error('API Error');
-
-                const result = await response.json();
-                return result.candidates?.[0]?.content?.parts?.[0]?.text || "No se pudo generar el análisis.";
-            } catch (error) {
-                if (retries < 5) {
-                    const delay = Math.pow(2, retries) * 1000;
-                    await new Promise(resolve => setTimeout(resolve, delay));
-                    return callGeminiAPI(query, systemInstruction, retries + 1);
-                }
-                throw error;
             }
         }
 
