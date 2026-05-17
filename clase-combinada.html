@@ -917,20 +917,20 @@
                             <h3 class="text-2xl font-bold text-center mb-2">Reserva tu lugar ahora</h3>
                             <p class="text-center text-gray-600 text-sm mb-6">Completa tus datos para unirte a la clase y recibir el Mapa Base VIDASEE.</p>
                             
-                            <form id="lead-form" class="space-y-4">
+                            <form id="registroVidaseeForm" class="space-y-4">
                                 <div>
                                     <label class="sr-only">Escribe tu nombre</label>
-                                    <input type="text" id="fname" required="" placeholder="Escribe tu nombre*" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-vidasee-purple focus:border-vidasee-purple outline-none transition-all">
+                                    <input type="text" id="form-nombre" required="" placeholder="Escribe tu nombre*" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-vidasee-purple focus:border-vidasee-purple outline-none transition-all">
                                 </div>
                                 <div>
                                     <label class="sr-only">Escribe tu E-mail principal</label>
-                                    <input type="email" id="femail" required="" placeholder="Escribe tu E-mail principal*" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-vidasee-purple focus:border-vidasee-purple outline-none transition-all">
+                                    <input type="email" id="form-email" required="" placeholder="Escribe tu E-mail principal*" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-vidasee-purple focus:border-vidasee-purple outline-none transition-all">
                                 </div>
                                 <div>
                                     <label class="sr-only">Escribe tu Número de WhatsApp</label>
-                                    <input type="tel" id="fphone" required="" placeholder="Escribe tu Número de WhatsApp*" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-vidasee-purple focus:border-vidasee-purple outline-none transition-all">
+                                    <input type="tel" id="form-whatsapp" required="" placeholder="Escribe tu Número de WhatsApp*" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-vidasee-purple focus:border-vidasee-purple outline-none transition-all">
                                 </div>
-                                <button type="submit" class="w-full bg-vidasee-orange hover:bg-orange-600 text-white font-black text-lg py-4 px-6 rounded-lg transition-colors transform hover:scale-[1.02] shadow-lg flex justify-center items-center">
+                                <button type="submit" id="submit-btn" class="w-full bg-vidasee-orange hover:bg-orange-600 text-white font-black text-lg py-4 px-6 rounded-lg transition-colors transform hover:scale-[1.02] shadow-lg flex justify-center items-center">
                                     ¡RESERVAR MI LUGAR EN LA CLASE!
                                 </button>
                                 <p class="text-xs text-center text-gray-500 mt-4">
@@ -1348,6 +1348,56 @@
             });
         });
     </script>
+
+    <script>
+        document.getElementById('registroVidaseeForm').addEventListener('submit', async function(e) {
+            e.preventDefault(); // Evita que la página intente recargarse sola
+
+            const btn = document.getElementById('submit-btn');
+            const originalText = btn.innerHTML;
+            
+            // Feedback visual para el usuario mientras se guardan sus datos
+            btn.innerText = "PROCESANDO REGISTRO...";
+            btn.disabled = true;
+
+            // 1. Recolectamos la información de los inputs
+            const nombre = document.getElementById('form-nombre').value;
+            const email = document.getElementById('form-email').value;
+            const whatsapp = document.getElementById('form-whatsapp').value;
+
+            // 2. PEGA AQUÍ LA URL QUE TE DIO SHEET MONKEY
+            const SHEET_MONKEY_URL = "TU_URL_DE_SHEET_MONKEY_AQUI"; 
+
+            try {
+                // Enviamos los datos en formato JSON a tu hoja de cálculo
+                const response = await fetch(SHEET_MONKEY_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        Nombre: nombre,
+                        Email: email,
+                        WhatsApp: whatsapp,
+                        FechaRegistro: new Date().toLocaleString() // Añade la fecha exacta de registro automáticamente
+                    })
+                });
+
+                if (response.ok) {
+                    // Si se guardó con éxito en Google Sheets, redirige pasando el nombre por la URL
+                    window.location.href = `agradecimiento.html?nombre=${encodeURIComponent(nombre)}`;
+                } else {
+                    alert("Ocurrió un inconveniente. Por favor, inténtalo de nuevo.");
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                }
+            } catch (error) {
+                console.error("Error al conectar:", error);
+                // Redirección segura de respaldo en caso de error de red para no perder al cliente
+                window.location.href = `agradecimiento.html?nombre=${encodeURIComponent(nombre)}`;
+            }
+        });
+        </script>
 
 
 </body>
